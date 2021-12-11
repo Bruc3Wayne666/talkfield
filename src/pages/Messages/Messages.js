@@ -13,13 +13,14 @@ export const Messages = ({navigation, route}) => {
 
     return (
         <View>
-            {route && <>
-                <Text>{route.params.id}</Text>
-                <Text>{route.params.task}</Text>
-                <Text>{String(route.params.done)}</Text>
-            </>}
-            <Button title={'Go Home!'} onPress={handlePop}/>
-            <Button title={'Profile'} onPress={handlePush}/>
+            <Text>Messages</Text>
+            {/*{route && <>*/}
+            {/*    <Text>{route.params.id}</Text>*/}
+            {/*    <Text>{route.params.task}</Text>*/}
+            {/*    <Text>{String(route.params.done)}</Text>*/}
+            {/*</>}*/}
+            {/*<Button title={'Go Home!'} onPress={handlePop}/>*/}
+            {/*<Button title={'Profile'} onPress={handlePush}/>*/}
         </View>
     )
 }

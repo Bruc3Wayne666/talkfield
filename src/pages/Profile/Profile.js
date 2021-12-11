@@ -1,26 +1,35 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Image, ScrollView, Text, View} from "react-native";
 import {Header} from "../../components/Header/Header";
 import {getOneUser} from "../../api/userAPI";
 import unknown from '../../../assets/unknown-512.webp'
 import {getUserPosts} from "../../api/postAPI";
 import {Ionicons} from "@expo/vector-icons";
+import {BottomTab} from "../../routes/Tab";
+import {SideDrawer} from "../../routes/Drawer";
+import {AuthContext} from "../../store/AuthContext";
 
 export const Profile = props => {
     // USE STORE THEN!!!!
-    const [user, setUser] = useState(null)
+    const {user} = useContext(AuthContext)
     const [posts, setPosts] = useState([])
+    console.log('------------------------', user)
 
     useEffect(() => {
-        const fetchUser = async () => {
-            const res = await getOneUser('613ca88c56d13f6f4ae62a31')
-            // console.log(res)
-            setUser(res)
+        // const fetchUser = async () => {
+        //     const res = await getOneUser('613ca88c56d13f6f4ae62a31')
+        //     // console.log(res)
+        //     setUser(res)
+        // }
+        // fetchUser()
+        if (user) {
+            console.log(user)
+        } else {
+            console.log('LOL')
         }
-        fetchUser()
 
         const fetchPosts = async () => {
-            const res = await getUserPosts('613ca88c56d13f6f4ae62a31')
+            const res = await getUserPosts(user?._id)
             // console.log(res)
             setPosts(res)
         }
@@ -60,6 +69,7 @@ export const Profile = props => {
                     ))}
                 </ScrollView>
             </View>
+            {/*<BottomTab />*/}
         </View>
     )
 }

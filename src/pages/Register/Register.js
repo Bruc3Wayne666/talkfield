@@ -6,7 +6,7 @@ export const Register = props => {
 
     return (
         <View>
-            <Header/>
+            {/*<Header/>*/}
             <Text>Register</Text>
         </View>
     )
