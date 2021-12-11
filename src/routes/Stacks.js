@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import {createStackNavigator} from "@react-navigation/stack";
 import {Home} from "../pages/Home/Home";
 import {Login} from "../pages/Login/Login";
-import {Messages} from "../pages/Messages/Messages";
+import {Conversations} from "../pages/Conversations/Conversations";
 import {Profile} from "../pages/Profile/Profile";
 import {Register} from "../pages/Register/Register";
 import {SideDrawer} from "./Drawer";

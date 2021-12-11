@@ -14,8 +14,9 @@ export const Login = ({navigation}) => {
     const handleLogin = async () => {
         loginCall({email, password}, dispatch)
             .then(() => {
-                console.log('Done')
-                navigation.navigate('Main')
+                user !== null
+                    ? navigation.navigate('Main')
+                    : Alert.alert('Wrong credentials - try again')
             })
     }
 
@@ -32,9 +33,13 @@ export const Login = ({navigation}) => {
             <View>
                 <View style={styles.loginContainer}>
                     <View>
-                        <TextInput onChangeText={text => {setEmail(text)}} style={styles.input} placeholderTextColor={'#666666'}
+                        <TextInput onChangeText={text => {
+                            setEmail(text)
+                        }} style={styles.input} placeholderTextColor={'#666666'}
                                    placeholder={'Email'}/>
-                        <TextInput onChangeText={text => {setPassword(text)}} style={styles.input} placeholderTextColor={'#666666'}
+                        <TextInput onChangeText={text => {
+                            setPassword(text)
+                        }} style={styles.input} placeholderTextColor={'#666666'}
                                    placeholder={'Password'} secureTextEntry={true}/>
                     </View>
                     <Pressable style={styles.loginBtn} onPress={handleLogin}>
