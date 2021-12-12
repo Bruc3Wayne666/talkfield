@@ -4,6 +4,7 @@ import {AuthContext} from "../../store/AuthContext";
 import {io} from "socket.io-client";
 import {getConversations} from "../../api/conversationAPI";
 import {getOneUser} from "../../api/userAPI";
+import {getUserPosts} from "../../api/postAPI";
 
 export const Conversations = ({navigation}) => {
     const [conversations, setConversations] = useState([])
@@ -46,20 +47,28 @@ export const Conversations = ({navigation}) => {
     }, [socket])
 
     useEffect(() => {
-        const fetchConversations = async () => {
-            try {
-                const res = await getConversations(user._id)
-                setConversations(res)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        fetchConversations()
-    }, [user._id])
-// Разобраться с асинхронкой чтобы вместо id выводить имя
-    const getFriend = async friendId => {
-        return await getOneUser(friendId)
-    }
+        navigation.addListener('focus', async () => {
+            const res = await getConversations(user._id)
+            setConversations(res)
+        })
+    })
+    // }, [navigation])
+
+//     useEffect(() => {
+//         const fetchConversations = async () => {
+//             try {
+//                 const res = await getConversations(user._id)
+//                 setConversations(res)
+//             } catch (err) {
+//                 console.log(err)
+//             }
+//         }
+//         fetchConversations()
+//     }, [user._id])
+// // Разобраться с асинхронкой чтобы вместо id выводить имя
+//     const getFriend = async friendId => {
+//         return await getOneUser(friendId)
+//     }
 
 
     return (

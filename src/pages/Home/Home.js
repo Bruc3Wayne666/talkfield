@@ -9,33 +9,43 @@ import {Ionicons} from "@expo/vector-icons";
 import {AuthContext} from "../../store/AuthContext";
 
 // export const Home = ({navigation}) => {
-export const Home = () => {
+export const Home = ({navigation}) => {
     const {user} = useContext(AuthContext)
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
-        // const fetchUser = async () => {
-        //     const res = await getOneUser('613ca88c56d13f6f4ae62a31')
-        //     // console.log(res)
-        //     setUser(res)
-        // }
-        // fetchUser()
-        if (user) {
-            console.log(user)
-        } else {
-            console.log('LOL')
-        }
-
-        const fetchPosts = async () => {
+        navigation.addListener('focus', async () => {
             const res = await getUserPosts(user?._id)
-            // console.log(res)
             setPosts(res)
-        }
-        fetchPosts()
-        posts?.map(post => {
-            console.log(post?.img)
+            // posts?.map(post => {
+            //     console.log(post?.img)
+            // })
         })
-    }, [])
+    }, [navigation])
+
+    // useEffect(() => {
+    //     // const fetchUser = async () => {
+    //     //     const res = await getOneUser('613ca88c56d13f6f4ae62a31')
+    //     //     // console.log(res)
+    //     //     setUser(res)
+    //     // }
+    //     // fetchUser()
+    //     if (user) {
+    //         console.log(user)
+    //     } else {
+    //         console.log('LOL')
+    //     }
+    //
+    //     const fetchPosts = async () => {
+    //         const res = await getUserPosts(user?._id)
+    //         // console.log(res)
+    //         setPosts(res)
+    //     }
+    //     fetchPosts()
+    //     posts?.map(post => {
+    //         console.log(post?.img)
+    //     })
+    // }, [])
 
     return (
         <View>

@@ -2,39 +2,55 @@ import React, {useEffect, useState} from "react";
 import {Text, View, StyleSheet, ScrollView} from "react-native";
 import {getOneUser} from "../../api/userAPI";
 import {getMessages, sendMessage} from "../../api/messageAPI";
+import {getConversations} from "../../api/conversationAPI";
 
-export const Chat = ({route}) => {
+export const Chat = ({navigation, route}) => {
     const [user, setUser] = useState(null)
     const [messages, setMessages] = useState(null)
     const [newMessage, setNewMessage] = useState('')
     const {currentUser} = route.params
     const {currentChat} = route.params
 
-    useEffect(() => {
-        const friendId = currentChat.members.find(member => member !== currentUser)
+    // useEffect(() => {
+    //     const friendId = currentChat.members.find(member => member !== currentUser)
+    //
+    //     const fetchUser = async () => {
+    //         try {
+    //             const res = await getOneUser(friendId)
+    //             setUser(res)
+    //         } catch (err) {
+    //             console.log(err)
+    //         }
+    //     }
+    //     fetchUser()
+    // }, [currentUser, currentChat])
 
-        const fetchUser = async () => {
-            try {
-                const res = await getOneUser(friendId)
-                setUser(res)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        fetchUser()
+    useEffect(() => {
+        navigation.addListener('focus', async () => {
+            const friendId = currentChat.members.find(member => member !== currentUser)
+            const res = await getOneUser(friendId)
+            setUser(res)
+        })
     }, [currentUser, currentChat])
 
     useEffect(() => {
-        const fetchMessages = async () => {
-            try {
-                const res = await getMessages(currentChat?._id)
-                setMessages(res)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        fetchMessages()
+        navigation.addListener('focus', async () => {
+            const res = await getMessages(currentChat?._id)
+            setMessages(res)
+        })
     }, [currentChat])
+
+    // useEffect(() => {
+    //     const fetchMessages = async () => {
+    //         try {
+    //             const res = await getMessages(currentChat?._id)
+    //             setMessages(res)
+    //         } catch (err) {
+    //             console.log(err)
+    //         }
+    //     }
+    //     fetchMessages()
+    // }, [currentChat])
 
     // useEffect(() => {
     //     scrollRef.current?.scrollIntoView({behavior: 'smooth'})

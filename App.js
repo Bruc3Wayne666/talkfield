@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {NavigationContainer} from "@react-navigation/native";
 import {DetailStack, PageStack} from "./src/routes/Stacks";
@@ -8,8 +8,12 @@ import {BottomTab} from "./src/routes/Tab";
 import {AuthContext, AuthContextProvider} from "./src/store/AuthContext";
 
 
-export default function App() {
+export default function App({navigation}) {
     const {user} = useContext(AuthContext)
+
+    // useEffect(() => {
+    //
+    // }, [])
 
     return (
         <AuthContextProvider>

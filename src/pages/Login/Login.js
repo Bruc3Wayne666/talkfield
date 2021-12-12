@@ -1,4 +1,4 @@
-import React, {useContext, useRef, useState} from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import {Alert, Pressable, Text, View} from "react-native";
 import {StyleSheet, TextInput} from "react-native";
 import {loginCall} from "../../api/authAPI";
@@ -13,8 +13,8 @@ export const Login = ({navigation}) => {
 
     const handleLogin = async () => {
         loginCall({email, password}, dispatch)
-            .then(() => {
-                user !== null
+            .then(res => {
+                res !== null
                     ? navigation.navigate('Main')
                     : Alert.alert('Wrong credentials - try again')
             })

@@ -9,35 +9,40 @@ import {BottomTab} from "../../routes/Tab";
 import {SideDrawer} from "../../routes/Drawer";
 import {AuthContext} from "../../store/AuthContext";
 
-export const Profile = props => {
+export const Profile = ({navigation}) => {
     // USE STORE THEN!!!!
     const {user} = useContext(AuthContext)
     const [posts, setPosts] = useState([])
     console.log('------------------------', user)
 
-    useEffect(() => {
-        // const fetchUser = async () => {
-        //     const res = await getOneUser('613ca88c56d13f6f4ae62a31')
-        //     // console.log(res)
-        //     setUser(res)
-        // }
-        // fetchUser()
-        if (user) {
-            console.log(user)
-        } else {
-            console.log('LOL')
-        }
 
-        const fetchPosts = async () => {
+    useEffect(() => {
+        navigation.addListener('focus', async () => {
             const res = await getUserPosts(user?._id)
-            // console.log(res)
             setPosts(res)
-        }
-        fetchPosts()
-        posts?.map(post => {
-            console.log(post?.img)
+            // posts?.map(post => {
+            //     console.log(post?.img)
+            // })
         })
-    }, [])
+    }, navigation)
+
+    // useEffect(() => {
+    //     if (user) {
+    //         console.log(user)
+    //     } else {
+    //         console.log('LOL')
+    //     }
+    //
+    //     const fetchPosts = async () => {
+    //         const res = await getUserPosts(user?._id)
+    //         // console.log(res)
+    //         setPosts(res)
+    //     }
+    //     fetchPosts()
+    //     posts?.map(post => {
+    //         console.log(post?.img)
+    //     })
+    // }, [])
 
     return (
         <View style={styles.profileContainer}>
