@@ -13,8 +13,8 @@ export const Login = ({navigation}) => {
 
     const handleLogin = async () => {
         loginCall({email, password}, dispatch)
-            .then(() => {
-                user !== null
+            .then(res => {
+                res !== null
                     ? navigation.navigate('Main')
                     : Alert.alert('Wrong credentials - try again')
             })
