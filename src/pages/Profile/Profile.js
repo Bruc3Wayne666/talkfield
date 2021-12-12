@@ -24,7 +24,7 @@ export const Profile = ({navigation}) => {
             //     console.log(post?.img)
             // })
         })
-    }, navigation)
+    }, [posts, navigation])
 
     // useEffect(() => {
     //     if (user) {

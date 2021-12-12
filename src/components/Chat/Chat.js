@@ -31,14 +31,14 @@ export const Chat = ({navigation, route}) => {
             const res = await getOneUser(friendId)
             setUser(res)
         })
-    }, [currentUser, currentChat])
+    },[currentChat ,navigation])
 
     useEffect(() => {
         navigation.addListener('focus', async () => {
             const res = await getMessages(currentChat?._id)
             setMessages(res)
         })
-    }, [currentChat])
+    },[messages ,navigation])
 
     // useEffect(() => {
     //     const fetchMessages = async () => {

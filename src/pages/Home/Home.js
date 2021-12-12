@@ -21,7 +21,7 @@ export const Home = ({navigation}) => {
             //     console.log(post?.img)
             // })
         })
-    }, [navigation])
+    }, [posts ,navigation])
 
     // useEffect(() => {
     //     // const fetchUser = async () => {

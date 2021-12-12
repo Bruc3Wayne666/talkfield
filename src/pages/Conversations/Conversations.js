@@ -51,7 +51,7 @@ export const Conversations = ({navigation}) => {
             const res = await getConversations(user._id)
             setConversations(res)
         })
-    })
+    },[conversations, navigation])
     // }, [navigation])
 
 //     useEffect(() => {
@@ -65,6 +65,7 @@ export const Conversations = ({navigation}) => {
 //         }
 //         fetchConversations()
 //     }, [user._id])
+
 // // Разобраться с асинхронкой чтобы вместо id выводить имя
 //     const getFriend = async friendId => {
 //         return await getOneUser(friendId)
